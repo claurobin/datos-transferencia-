@@ -1,2 +1,1 @@
-# datos-transferencia-
-QR
+
