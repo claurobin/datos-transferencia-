@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Datos de transferencia</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #f4f7fb;
+      margin: 0;
+      padding: 20px;
+      color: #222;
+    }
+    .card {
+      max-width: 500px;
+      margin: 40px auto;
+      background: white;
+      padding: 24px;
+      border-radius: 16px;
+      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+    }
+    h1 {
+      font-size: 22px;
+      margin-bottom: 16px;
+      text-align: center;
+    }
+    .dato {
+      margin: 10px 0;
+      padding: 10px 12px;
+      background: #f9fafc;
+      border-radius: 10px;
+      border: 1px solid #e5e7eb;
+      word-break: break-word;
+    }
+    .label {
+      font-weight: bold;
+      display: block;
+      margin-bottom: 4px;
+    }
+    button {
+      width: 100%;
+      margin-top: 18px;
+      padding: 14px;
+      border: none;
+      border-radius: 10px;
+      background: #2563eb;
+      color: white;
+      font-size: 16px;
+      cursor: pointer;
+    }
+    button:hover {
+      background: #1d4ed8;
+    }
+    .mensaje {
+      text-align: center;
+      margin-top: 12px;
+      color: green;
+      min-height: 20px;
+    }
+    .nota {
+      font-size: 13px;
+      color: #666;
+      margin-top: 16px;
+      text-align: center;
+    }
+  </style>
+</head>
+<body>
+  <div class="card">
+    <h1>Datos para agregar destinatario</h1>
+    <div class="dato">
+      <span class="label">Nombre:</span>
+      Juan Pérez
+    </div>
+    <div class="dato">
+      <span class="label">Banco:</span>
+      Banco X
+    </div>
+    <div class="dato">
+      <span class="label">Tipo de cuenta:</span>
+      Ahorros
+    </div>
+    <div class="dato">
+      <span class="label">Número de cuenta:</span>
+      1234567890
+    </div>
+    <div class="dato">
+      <span class="label">Documento:</span>
+      CC 12345678
+    </div>
+    <button onclick="copiarDatos()">Copiar datos</button>
+    <div class="mensaje" id="mensaje"></div>
+    <div class="nota">
+      Luego pega estos datos en la app de tu banco.
+    </div>
+  </div>
+  <script>
+    function copiarDatos() {
+      const texto = `Nombre: Juan Pérez
+Banco: Banco X
+Tipo de cuenta: Ahorros
+Número de cuenta: 1234567890
+Documento: CC 12345678`;
+      navigator.clipboard.writeText(texto).then(() => {
+        document.getElementById("mensaje").textContent = "Datos copiados correctamente.";
+      }).catch(() => {
+        document.getElementById("mensaje").textContent = "No se pudo copiar automáticamente.";
+      });
+    }
+  </script>
+</body>
+</html>
