@@ -3,109 +3,196 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Datos de transferencia</title>
+  <title>Bingo Escolar - Transferencia</title>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #f4f7fb;
+    * {
       margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
       padding: 20px;
-      color: #222;
     }
+    
     .card {
-      max-width: 500px;
-      margin: 40px auto;
       background: white;
-      padding: 24px;
-      border-radius: 16px;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
-    }
-    h1 {
-      font-size: 22px;
-      margin-bottom: 16px;
+      border-radius: 20px;
+      padding: 30px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+      max-width: 400px;
+      width: 100%;
       text-align: center;
     }
-    .dato {
-      margin: 10px 0;
-      padding: 10px 12px;
-      background: #f9fafc;
-      border-radius: 10px;
-      border: 1px solid #e5e7eb;
-      word-break: break-word;
+    
+    .qr-container {
+      background: #f0f0f0;
+      padding: 20px;
+      border-radius: 15px;
+      margin: 20px 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      min-height: 280px;
     }
-    .label {
+    
+    #qrcode {
+      display: inline-block;
+    }
+    
+    h1 {
+      color: #667eea;
+      font-size: 24px;
+      margin-bottom: 10px;
+    }
+    
+    .subtitulo {
+      color: #666;
+      font-size: 14px;
+      margin-bottom: 20px;
+    }
+    
+    .dato {
+      background: #f9fafc;
+      padding: 12px 15px;
+      border-radius: 10px;
+      margin: 10px 0;
+      border: 1px solid #e5e7eb;
+      font-size: 15px;
+    }
+    
+    .dato-label {
       font-weight: bold;
+      color: #667eea;
       display: block;
+      font-size: 12px;
       margin-bottom: 4px;
     }
-    button {
+    
+    .dato-valor {
+      color: #222;
+      font-size: 16px;
+      word-break: break-all;
+    }
+    
+    .btn-copiar {
       width: 100%;
-      margin-top: 18px;
-      padding: 14px;
+      padding: 16px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
       border: none;
       border-radius: 10px;
-      background: #2563eb;
-      color: white;
       font-size: 16px;
+      font-weight: bold;
       cursor: pointer;
+      margin-top: 20px;
+      transition: transform 0.2s, box-shadow 0.2s;
     }
-    button:hover {
-      background: #1d4ed8;
+    
+    .btn-copiar:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
     }
+    
+    .btn-copiar:active {
+      transform: translateY(0);
+    }
+    
     .mensaje {
-      text-align: center;
       margin-top: 12px;
-      color: green;
+      color: #10b981;
+      font-weight: bold;
       min-height: 20px;
+      animation: fadeIn 0.3s ease-in;
     }
-    .nota {
-      font-size: 13px;
-      color: #666;
-      margin-top: 16px;
-      text-align: center;
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .icono {
+      font-size: 32px;
+      margin-bottom: 10px;
     }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>Datos para agregar destinatario</h1>
-    <div class="dato">
-      <span class="label">Nombre:</span>
-      Claudia Robin Gonzalez
+    <div class="icono">🎰</div>
+    <h1>Bingo Escolar</h1>
+    <p class="subtitulo">Datos para tu transferencia</p>
+    
+    <div class="qr-container">
+      <div id="qrcode"></div>
     </div>
+    
     <div class="dato">
-      <span class="label">Banco:</span>
-      Banco Chile
+      <span class="dato-label">Titular</span>
+      <span class="dato-valor">Claudia Robin Gonzalez</span>
     </div>
+    
     <div class="dato">
-      <span class="label">Tipo de cuenta:</span>
-      Corriente
+      <span class="dato-label">Banco</span>
+      <span class="dato-valor">Banco Chile</span>
     </div>
+    
     <div class="dato">
-      <span class="label">Número de cuenta:</span>
-      2500076703
+      <span class="dato-label">Tipo de cuenta</span>
+      <span class="dato-valor">Corriente</span>
     </div>
+    
     <div class="dato">
-      <span class="label">Documento:</span>
-      12592827-7
+      <span class="dato-label">Número de cuenta</span>
+      <span class="dato-valor">2500076703</span>
     </div>
-    <button onclick="copiarDatos()">Copiar datos</button>
+    
+    <div class="dato">
+      <span class="dato-label">Documento</span>
+      <span class="dato-valor">12592827-7</span>
+    </div>
+    
+    <button class="btn-copiar" onclick="copiarTodos()">📋 Copiar datos</button>
     <div class="mensaje" id="mensaje"></div>
-    <div class="nota">
-      Luego pega estos datos en la app de tu banco.
-    </div>
   </div>
+
   <script>
-    function copiarDatos() {
-      const texto = `Nombre: Juan Pérez
-Banco: Banco X
-Tipo de cuenta: Ahorros
-Número de cuenta: 1234567890
-Documento: CC 12345678`;
+    const textoQR = `Nombre: Claudia Robin Gonzalez
+Banco: Banco Chile
+Tipo de cuenta: Corriente
+Número de cuenta: 2500076703
+Documento: 12592827-7`;
+    
+    // Generar QR
+    new QRCode(document.getElementById("qrcode"), {
+      text: textoQR,
+      width: 256,
+      height: 256,
+      colorDark: "#000000",
+      colorLight: "#ffffff",
+      correctLevel: QRCode.CorrectLevel.H
+    });
+    
+    function copiarTodos() {
+      const texto = `Nombre: Claudia Robin Gonzalez
+Banco: Banco Chile
+Tipo de cuenta: Corriente
+Número de cuenta: 2500076703
+Documento: 12592827-7`;
+      
       navigator.clipboard.writeText(texto).then(() => {
-        document.getElementById("mensaje").textContent = "Datos copiados correctamente.";
-      }).catch(() => {
-        document.getElementById("mensaje").textContent = "No se pudo copiar automáticamente.";
+        const msg = document.getElementById("mensaje");
+        msg.textContent = "✓ Datos copiados. Pega en tu banco";
+        setTimeout(() => {
+          msg.textContent = "";
+        }, 3000);
       });
     }
   </script>
