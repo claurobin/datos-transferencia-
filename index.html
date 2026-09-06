@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Bingo Escolar - Transferencia</title>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
   <style>
     * {
       margin: 0;
@@ -17,54 +16,38 @@
       background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
       min-height: 100vh;
       display: flex;
-      align-items: flex-start;
+      align-items: center;
       justify-content: center;
-      padding: 5px;
+      padding: 20px;
     }
     
     .card {
       background: white;
       border-radius: 15px;
-      padding: 15px;
+      padding: 20px;
       box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
-      max-width: 400px;
+      max-width: 350px;
       width: 100%;
       text-align: center;
-      margin-top: 5px;
-    }
-    
-    .qr-container {
-      background: #f0f0f0;
-      padding: 10px;
-      border-radius: 10px;
-      margin: 10px 0;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      min-height: 270px;
-    }
-    
-    #qrcode {
-      display: inline-block;
     }
     
     h1 {
       color: #667eea;
-      font-size: 20px;
-      margin-bottom: 3px;
+      font-size: 22px;
+      margin-bottom: 5px;
     }
     
     .subtitulo {
       color: #666;
-      font-size: 12px;
-      margin-bottom: 12px;
+      font-size: 13px;
+      margin-bottom: 15px;
     }
     
     .dato {
       background: #f9fafc;
-      padding: 9px 10px;
+      padding: 10px;
       border-radius: 8px;
-      margin: 6px 0;
+      margin: 8px 0;
       border: 1px solid #e5e7eb;
       font-size: 13px;
     }
@@ -73,8 +56,8 @@
       font-weight: bold;
       color: #667eea;
       display: block;
-      font-size: 10px;
-      margin-bottom: 2px;
+      font-size: 11px;
+      margin-bottom: 3px;
     }
     
     .dato-valor {
@@ -93,7 +76,7 @@
       font-size: 14px;
       font-weight: bold;
       cursor: pointer;
-      margin-top: 12px;
+      margin-top: 15px;
       transition: transform 0.2s, box-shadow 0.2s;
     }
     
@@ -107,7 +90,7 @@
     }
     
     .mensaje {
-      margin-top: 8px;
+      margin-top: 10px;
       color: #10b981;
       font-weight: bold;
       min-height: 16px;
@@ -121,8 +104,8 @@
     }
     
     .icono {
-      font-size: 24px;
-      margin-bottom: 3px;
+      font-size: 28px;
+      margin-bottom: 5px;
     }
   </style>
 </head>
@@ -131,10 +114,6 @@
     <div class="icono">🎰</div>
     <h1>Bingo Escolar</h1>
     <p class="subtitulo">Datos para tu transferencia</p>
-    
-    <div class="qr-container">
-      <div id="qrcode"></div>
-    </div>
     
     <div class="dato">
       <span class="dato-label">Titular</span>
@@ -171,23 +150,6 @@
   </div>
 
   <script>
-    const textoQR = `Nombre: Claudia Robin Gonzalez
-Correo: claudia.robin@gmail.com
-Banco: Banco Chile
-Tipo de cuenta: Corriente
-Número de cuenta: 2500076703
-Documento: 12592827-7`;
-    
-    // Generar QR
-    new QRCode(document.getElementById("qrcode"), {
-      text: textoQR,
-      width: 256,
-      height: 256,
-      colorDark: "#000000",
-      colorLight: "#ffffff",
-      correctLevel: QRCode.CorrectLevel.H
-    });
-    
     function copiarTodos() {
       const texto = `Nombre: Claudia Robin Gonzalez
 Correo: claudia.robin@gmail.com
