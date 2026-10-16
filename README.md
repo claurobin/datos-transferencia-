@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Datos de Cuenta Corriente</title>
+  <meta name="robots" content="noindex, nofollow">
+  <title>Datos de Transferencia</title>
   <style>
     * { box-sizing: border-box; }
     body {
@@ -26,59 +27,46 @@
     .row { padding: 10px 0; border-bottom: 1px solid #e5e8ee; }
     .label { font-size: .75rem; color: #6b7280; text-transform: uppercase; }
     .value { font-size: 1.05rem; font-weight: bold; word-break: break-all; }
-    button {
-      margin-top: 6px; padding: 4px 10px; font-size: .8rem;
-      border: 1px solid #1a3c7a; background: #fff; color: #1a3c7a;
-      border-radius: 6px; cursor: pointer;
+    #btn {
+      display: block; width: 100%; margin-top: 22px; padding: 14px;
+      font-size: 1rem; font-weight: bold; color: #fff; background: #1a3c7a;
+      border: none; border-radius: 8px; cursor: pointer;
     }
-    button:hover { background: #1a3c7a; color: #fff; }
-    #qrcode { display: flex; justify-content: center; margin-top: 24px; }
-    .nota { text-align: center; font-size: .75rem; color: #6b7280; margin-top: 10px; }
+    #btn:active { background: #12295a; }
   </style>
 </head>
 <body>
   <div class="card">
     <h1>Datos para Transferencia</h1>
 
-    <div class="row">
-      <div class="label">Titular</div>
-      <div class="value" id="titular">CLAUDIA ROBIN GONZALEZ</div>
-    </div>
-    <div class="row">
-      <div class="label">Banco / Tipo de cuenta</div>
-      <div class="value">Banco de Chile – Cuenta Corriente</div>
-    </div>
-    <div class="row">
-      <div class="label">N.º de cuenta</div>
-      <div class="value" id="cuenta">2500076703</div>
-      <button onclick="copiar('cuenta')">Copiar</button>
-    </div>
-    <div class="row">
-      <div class="label">RUT</div>
-      <div class="value" id="rut">12592827-7</div>
-      <button onclick="copiar('rut')">Copiar</button>
-    </div>
-    <div class="row">
-      <div class="label">Correo electrónico</div>
-      <div class="value" id="correo">bingo2026oxford@gmail.com</div>
-      <button onclick="copiar('correo')">Copiar</button>
-    </div>
+    <div class="row"><div class="label">Titular</div><div class="value">CLAUDIA ROBIN GONZALEZ</div></div>
+    <div class="row"><div class="label">Banco</div><div class="value">Banco de Chile</div></div>
+    <div class="row"><div class="label">Tipo de cuenta</div><div class="value">Cuenta Corriente</div></div>
+    <div class="row"><div class="label">N.º de cuenta</div><div class="value">2500076703</div></div>
+    <div class="row"><div class="label">RUT</div><div class="value">12592827-7</div></div>
+    <div class="row"><div class="label">Correo</div><div class="value">bingo2026oxford@gmail.com</div></div>
 
-    <div id="qrcode"></div>
-    <p class="nota">Escanee el código QR para abrir esta página.</p>
+    <button id="btn" onclick="copiarTodo()">Copiar datos</button>
   </div>
 
-  <script src="https://cdn.jsdelivr.net/npm/qrcodejs@1.0.0/qrcode.min.js"></script>
   <script>
-    new QRCode(document.getElementById("qrcode"), {
-      text: window.location.href,
-      width: 180,
-      height: 180
-    });
+    const datos =
+`CLAUDIA ROBIN GONZALEZ
+Banco de Chile - Cuenta Corriente
+N.º de cuenta: 2500076703
+RUT: 12592827-7
+Correo: bingo2026oxford@gmail.com`;
 
-    function copiar(id) {
-      const texto = document.getElementById(id).innerText;
-      navigator.clipboard.writeText(texto).then(() => alert("Copiado: " + texto));
+    function copiarTodo() {
+      const btn = document.getElementById("btn");
+      const ok = () => { btn.textContent = "¡Copiado!"; setTimeout(() => btn.textContent = "Copiar datos", 2000); };
+      if (navigator.clipboard) {
+        navigator.clipboard.writeText(datos).then(ok);
+      } else {
+        const t = document.createElement("textarea");
+        t.value = datos; document.body.appendChild(t); t.select();
+        document.execCommand("copy"); document.body.removeChild(t); ok();
+      }
     }
   </script>
 </body>
