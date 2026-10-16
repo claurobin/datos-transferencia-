@@ -1,72 +1,170 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="robots" content="noindex, nofollow">
-  <title>Datos de Transferencia</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Bingo Escolar - Transferencia</title>
   <style>
-    * { box-sizing: border-box; }
-    body {
-      font-family: Arial, Helvetica, sans-serif;
-      background: #f2f4f8;
+    * {
       margin: 0;
-      padding: 20px;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Arial', sans-serif;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      min-height: 100vh;
       display: flex;
+      align-items: center;
       justify-content: center;
+      padding: 20px;
     }
+    
     .card {
-      background: #fff;
-      max-width: 420px;
+      background: white;
+      border-radius: 15px;
+      padding: 20px;
+      box-shadow: 0 15px 50px rgba(0, 0, 0, 0.3);
+      max-width: 350px;
       width: 100%;
-      padding: 28px;
-      border-radius: 12px;
-      box-shadow: 0 4px 14px rgba(0,0,0,.12);
+      text-align: center;
     }
-    h1 { font-size: 1.3rem; text-align: center; color: #1a3c7a; margin-top: 0; }
-    .row { padding: 10px 0; border-bottom: 1px solid #e5e8ee; }
-    .label { font-size: .75rem; color: #6b7280; text-transform: uppercase; }
-    .value { font-size: 1.05rem; font-weight: bold; word-break: break-all; }
-    #btn {
-      display: block; width: 100%; margin-top: 22px; padding: 14px;
-      font-size: 1rem; font-weight: bold; color: #fff; background: #1a3c7a;
-      border: none; border-radius: 8px; cursor: pointer;
+    
+    h1 {
+      color: #667eea;
+      font-size: 22px;
+      margin-bottom: 5px;
     }
-    #btn:active { background: #12295a; }
+    
+    .subtitulo {
+      color: #666;
+      font-size: 13px;
+      margin-bottom: 15px;
+    }
+    
+    .dato {
+      background: #f9fafc;
+      padding: 10px;
+      border-radius: 8px;
+      margin: 8px 0;
+      border: 1px solid #e5e7eb;
+      font-size: 13px;
+    }
+    
+    .dato-label {
+      font-weight: bold;
+      color: #667eea;
+      display: block;
+      font-size: 11px;
+      margin-bottom: 3px;
+    }
+    
+    .dato-valor {
+      color: #222;
+      font-size: 14px;
+      word-break: break-all;
+    }
+    
+    .btn-copiar {
+      width: 100%;
+      padding: 12px;
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      color: white;
+      border: none;
+      border-radius: 8px;
+      font-size: 14px;
+      font-weight: bold;
+      cursor: pointer;
+      margin-top: 15px;
+      transition: transform 0.2s, box-shadow 0.2s;
+    }
+    
+    .btn-copiar:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 8px 20px rgba(102, 126, 234, 0.4);
+    }
+    
+    .btn-copiar:active {
+      transform: translateY(0);
+    }
+    
+    .mensaje {
+      margin-top: 10px;
+      color: #10b981;
+      font-weight: bold;
+      min-height: 16px;
+      animation: fadeIn 0.3s ease-in;
+      font-size: 12px;
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+    
+    .icono {
+      font-size: 28px;
+      margin-bottom: 5px;
+    }
   </style>
 </head>
 <body>
   <div class="card">
-    <h1>Datos para Transferencia</h1>
-
-    <div class="row"><div class="label">Titular</div><div class="value">CLAUDIA ROBIN GONZALEZ</div></div>
-    <div class="row"><div class="label">Banco</div><div class="value">Banco de Chile</div></div>
-    <div class="row"><div class="label">Tipo de cuenta</div><div class="value">Cuenta Corriente</div></div>
-    <div class="row"><div class="label">N.º de cuenta</div><div class="value">2500076703</div></div>
-    <div class="row"><div class="label">RUT</div><div class="value">12592827-7</div></div>
-    <div class="row"><div class="label">Correo</div><div class="value">bingo2026oxford@gmail.com</div></div>
-
-    <button id="btn" onclick="copiarTodo()">Copiar datos</button>
+    <div class="icono">🎰</div>
+    <h1>Bingo Escolar</h1>
+    <p class="subtitulo">Datos para tu transferencia</p>
+    
+    <div class="dato">
+      <span class="dato-label">Titular</span>
+      <span class="dato-valor">Claudia Robin Gonzalez</span>
+    </div>
+    
+    <div class="dato">
+      <span class="dato-label">Correo</span>
+      <span class="dato-valor">bingo2026oxford@gmail.com</span>
+    </div>
+    
+    <div class="dato">
+      <span class="dato-label">Banco</span>
+      <span class="dato-valor">Banco Chile</span>
+    </div>
+    
+    <div class="dato">
+      <span class="dato-label">Tipo de cuenta</span>
+      <span class="dato-valor">Corriente</span>
+    </div>
+    
+    <div class="dato">
+      <span class="dato-label">Número de cuenta</span>
+      <span class="dato-valor">2500076703</span>
+    </div>
+    
+    <div class="dato">
+      <span class="dato-label">Documento</span>
+      <span class="dato-valor">12592827-7</span>
+    </div>
+    
+    <button class="btn-copiar" onclick="copiarTodos()">📋 Copiar datos</button>
+    <div class="mensaje" id="mensaje"></div>
   </div>
 
   <script>
-    const datos =
-`CLAUDIA ROBIN GONZALEZ
-Banco de Chile - Cuenta Corriente
-N.º de cuenta: 2500076703
-RUT: 12592827-7
-Correo: bingo2026oxford@gmail.com`;
-
-    function copiarTodo() {
-      const btn = document.getElementById("btn");
-      const ok = () => { btn.textContent = "¡Copiado!"; setTimeout(() => btn.textContent = "Copiar datos", 2000); };
-      if (navigator.clipboard) {
-        navigator.clipboard.writeText(datos).then(ok);
-      } else {
-        const t = document.createElement("textarea");
-        t.value = datos; document.body.appendChild(t); t.select();
-        document.execCommand("copy"); document.body.removeChild(t); ok();
-      }
+    function copiarTodos() {
+      const texto = `Nombre: Claudia Robin Gonzalez
+Correo: bingo2026oxford@gmail.com
+Banco: Banco Chile
+Tipo de cuenta: Corriente
+Número de cuenta: 2500076703
+Documento: 12592827-7`;
+      
+      navigator.clipboard.writeText(texto).then(() => {
+        const msg = document.getElementById("mensaje");
+        msg.textContent = "✓ Datos copiados. Pega en tu banco";
+        setTimeout(() => {
+          msg.textContent = "";
+        }, 3000);
+      });
     }
   </script>
 </body>
